@@ -1,10 +1,9 @@
-#!/bin/bash
-#include<stdio.h>
+#include <stdio.h>
+
 /**
-* main - Entry point
-*
-* Return: Always 0 (Success)
-*/
+ * main - the containing func
+ * Return: 0 if no error
+ */
 int main(void)
 {
 	printf("Size of a char: %d byte(s)\n", sizeof(char));
