@@ -3,16 +3,17 @@
 #include <stdio.h>
 
 /**
- * main - Determine if a number is positive, negative or zero.
+ * main - check if a number is positive, negative or zero.
  *
- * Return: Always 0 (when is successful)
+ * Return: Always 0 (when is Successful)
  */
 int main(void)
 {
 	int n;
+
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	if (n < 0)
+	if (n > 0)
 	{
 		printf("%d is positive\n", n);
 	}
