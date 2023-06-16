@@ -3,14 +3,13 @@
 /**
  * main - Alphabet
  *
- * Return: return 0 (if its correct)
+ * Return: Return 0 (if logically correct)
  */
 int main(void)
 {
-	char i = (lower case a-z);
-	int i;
+	char i;
 
-        for (i = 'a'; i <= 'z'; i++)
+	for (i = 'a'; i <= 'z'; i++)
 	{
 		putchar(i);
 	}
