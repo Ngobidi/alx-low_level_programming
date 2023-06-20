@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * main - write _putchar
- * 
+ * @c: The character to write
  * Return: 0 (when check was successful)
  */
 
