@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * main - write function  _putchar
- * 
+ * main - write function  _putcha
+ *
  * Return: always 0 (when validated)
  */
 
