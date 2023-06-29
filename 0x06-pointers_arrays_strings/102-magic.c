@@ -9,13 +9,15 @@ int main(void)
   a[2] = 1024;
   p = &n;
   /*
-   * program prints a[2] = 98, followed by a new line
+   * print your line of code
    * note:
-   * - a is not allowed
-   * - p is not allowed to be modified
+   * - not allowed to use a
+   * - not allowed to modify p
    * - write only one statement
    * - not allowed to code anything else than this line of code
    */
-  printf("a[2] = %d\n", *(p + 5) = 98);
+  *(p + 5) = 98;
+  /* ...so that this prints 98\n */
+  printf("a[2] = %d\n", a[2]);
   return (0);
 }
