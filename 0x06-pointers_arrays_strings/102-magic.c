@@ -7,7 +7,7 @@ int main(void)
   int *p;
 
   a[2] = 1024;
-  p = &n;
+  p = &a[2];
   /*
    * program prints a[2] = 98, followed by a new line
    * note:
