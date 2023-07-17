@@ -1,6 +1,6 @@
-#ifndef Function_Like_Macro_H
-#define Function_Like_Macro_H
+#ifndef FUNCTION_LIKE_MACRO_H
+#define FUNCTION_LIKE_MACRO_H
 
-#define Abs(x) ((x) < (0) ? -(x) : (x))
+#define ABS(x) ((x) < (0) ? -(x) : (x))
 
 #endif
