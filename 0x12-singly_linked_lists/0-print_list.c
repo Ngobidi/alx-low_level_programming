@@ -6,7 +6,8 @@
 /**
  * print_list - display the elements of a linked list
  * @h: list_t list (pointer) to be stated
- *
+ * 
+ * if str is null, print [0] (nil)
  * Return: num of nodes printed
  */
 size_t print_list(const list_t *h)
