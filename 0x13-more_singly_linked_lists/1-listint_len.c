@@ -6,13 +6,13 @@
 /**
  * listint_len - function returns the number of elements
  * where
- * @h: listint_t list
- * @num: number of nodes
- * return: always (num)
+ * @h: firstnode listint_t list
+ * 
+ * return: number of node
  */
 size_t listint_len(const listint_t *h)
 {
-	size_t number = 0;
+	size_t num = 0;
 
 	while (h)
 	{
@@ -20,5 +20,5 @@ size_t listint_len(const listint_t *h)
 		h = h->next;
 	}
 
-	return (number);
+	return (num);
 }
