@@ -13,8 +13,23 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int x, y;
-	int len;
+	unsigned int group_data, study_data;
+	int file1;
 
 	if (b == NULL)
-		return (0)
+		return (0);
+	for (file1 = 0; b[file1]; file1++)
+	{
+		if (b[file1] != '0' && b[file1] != '1')
+			return (0);
+	}
+
+	for (study_data = 1, group_data = 0, file1--;
+			file1 >= 0; file1--, study_data *= 2)
+	{
+		if (b[file1] == '1')
+			group_data += study_data;
+	}
+
+	return (group_data);
+}
