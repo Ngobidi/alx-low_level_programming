@@ -1,0 +1,93 @@
+#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <elf.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+void check_elf(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void close_elf(int elf);
+
+/**
+ * print_entry - entry_ELF_header
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+{
+        printf(" beginning_address:  ");
+
+        if (e_ident[EI_DATA_A] == ELF_DATA_2_MSB)
+        {
+                e_entry = ((e_entry << 8) & 0xFF00FF00) |
+                          ((e_entry >> 8) & 0xFF00FF);
+                e_entry = (e_entry << 16) | (e_entry >> 16);
+        }
+
+        if (e_ident[EI_CLASSES] == ELF_CLASSES_32)
+                printf("%#x\n", (unsigned int)e_entry);
+
+        else
+                printf("%#lx\n", e_entry);
+}
+
+/**
+ * print_osabi - osabi_ELF_header
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+void print_osabi(unsigned char *e_ident)
+{
+        printf(" OS_ABI:                            ");
+
+        switch (e_ident[EI_OS_ABI])
+        {
+        case ELF_OS_ABI_NONE:
+                printf("UNIXs - Systems V\n");
+                break;
+        case ELF_OS_ABI_HPUX:
+                printf("UNIXs - HP-UX\n");
+                break;
+        case ELF_OS_ABI_NET_BSD:
+                printf("UNIXs - Net_BSD\n");
+                break;
+        case ELF_OS_ABI_LINUX:
+                printf("UNIXs - Linux\n");
+                break;
+        case ELF_OS_ABI_SOLAR_IS:
+                printf("UNIXs - Solar_is\n");
+                break;
+        case ELF_OS_ABI_IRIX:
+                printf("UNIXs - IRIX\n");
+                break;
+        case ELF_OS_ABI_FREE_BSD:
+                printf("UNIXs - Free_BSD\n");
+                break;
+        case ELF_OS_ABI_TRU_64:
+                printf("UNIXs - TRU_64\n");
+                break;
+        case ELF_OS_ABI_ARMS:
+                printf("ARM\n");
+                break;
+        case ELF_OS_ABI_STAND_ALONES:
+                printf("Standa_lones_App\n");
+                break;
+        default:
+                printf("<unknown: %x>\n", e_ident[EI_OS_ABI]);
+        }
+}
