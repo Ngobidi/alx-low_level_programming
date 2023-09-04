@@ -24,31 +24,34 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-	dprintf(STDERR_FILENO, "\n");
-	exit(97);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
 	}
 
 	buffer = create_buffer(argv[2]);
 	begin = open(argv[1], O_RDONLY);
-	y = read(begin, buffer, BUFFER_SIZE);
+	y = read(begin, buffer, 1024);
 	route = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
 		if (begin == -1 || y == -1)
 		{
-		dprintf(STDERR_FILENO, "%s\n", argv[1]);
-		free(buffer);
-		exit(98);
+			dprintf(STDERR_FILENO,
+				"Error: unreadable from file %s\n", argv[1]);
+			free(buffer);
+			exit(98);
 		}
 
 		z = write(route, buffer, y);
 		if (route == -1 || z == -1)
 		{
-		dprintf(STDERR_FILENO, "%s\n", argv[2]);
-		free(buffer);
-		exit(99);
+			dprintf(STDERR_FILENO,
+				"Error: unwriteable to %s\n", argv[2]);
+			free(buffer);
+			exit(99);
 		}
-		y = read(begin, buffer, BUFFER_SIZE);
+
+		y = read(begin, buffer, 1024);
 		route = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (y > 0);
