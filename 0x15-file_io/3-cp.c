@@ -69,14 +69,17 @@ int main(int argc, char *argv[])
  */
 void close_file(int fd)
 {
-	int result = close(fd);
+	int f;
 
-	if (result == -1)
+	f = close(fd);
+
+	if (f == -1)
 	{
-	dprintf(STDERR_FILENO, "Error: Cannot close_file%d\n", fd);
-	exit(100);
-    }
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
 }
+
 
 /**
  * create_buffer - Assigned 1024 bytes to buffers.
@@ -86,17 +89,16 @@ void close_file(int fd)
  */
 char *create_buffer(char *file)
 {
-	char *buffer;
+	char *j;
 
-	do {
-	buffer = malloc(sizeof(char) * 1024);
+	j = malloc(sizeof(char) * 1024);
 
-	if (buffer == NULL)
+	if (j == NULL)
 	{
-	dprintf(STDERR_FILENO, "Error: memory allocation failed %s\n", file);
-	exit(99);
+		dprintf(STDERR_FILENO,
+			"Error: Cannot write to %s\n", file);
+		exit(99);
 	}
-	} while (0);
 
-	return (buffer);
+	return (j);
 }
