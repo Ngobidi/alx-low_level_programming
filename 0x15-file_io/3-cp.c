@@ -34,22 +34,22 @@ int main(int argc, char *argv[])
 	route = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	do {
-	if (begin == -1 || y == -1)
-	{
-	dprintf(STDERR_FILENO, "%s\n", argv[1]);
-	free(buffer);
-	exit(98);
-	}
+		if (begin == -1 || y == -1)
+		{
+		dprintf(STDERR_FILENO, "%s\n", argv[1]);
+		free(buffer);
+		exit(98);
+		}
 
-	z = write(route, buffer, y);
-	if (route == -1 || z == -1)
-	{
-	dprintf(STDERR_FILENO, "%s\n", argv[2]);
-	free(buffer);
-	exit(99);
-	}
-	y = read(begin, buffer, BUFFER_SIZE);
-	route = open(argv[2], O_WRONLY | O_APPEND);
+		z = write(route, buffer, y);
+		if (route == -1 || z == -1)
+		{
+		dprintf(STDERR_FILENO, "%s\n", argv[2]);
+		free(buffer);
+		exit(99);
+		}
+		y = read(begin, buffer, BUFFER_SIZE);
+		route = open(argv[2], O_WRONLY | O_APPEND);
 
 	} while (y > 0);
 
