@@ -6,24 +6,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void check_elf(unsigned char *e_ident);
-void print_magic(unsigned char *e_ident);
-void print_class(unsigned char *e_ident);
-void print_data(unsigned char *e_ident);
-void print_version(unsigned char *e_ident);
-void print_abi(unsigned char *e_ident);
-void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
-void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void validate_elf(unsigned char *e_ident);
+void display_magic(unsigned char *e_ident);
+void display_class(unsigned char *e_ident);
+void display_data(unsigned char *e_ident);
+void display_version(unsigned char *data);
+void display_abi(unsigned char *e_ident);
+void display_osabi(unsigned char *data);
+void display_type(unsigned int e_type, unsigned char *e_ident);
+void display_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 /**
- * check_elf - Check the code
+ * validate_elf - Check the code
  * @e_ident: Array pointer
  *
  * Description: exit code 98 when unsuccessful
  */
-void check_elf(unsigned char *e_ident)
+void validate_elf(unsigned char *e_ident)
 {
 	int i;
 
@@ -41,12 +41,12 @@ void check_elf(unsigned char *e_ident)
 }
 
 /**
- * print_magic - check the code
+ * display_magic - check the code
  * @e_ident: Arrays pointer
  *
  * Description: Magic_number.
  */
-void print_magic(unsigned char *e_ident)
+void display_magic(unsigned char *e_ident)
 {
 	int i;
 
@@ -64,10 +64,10 @@ void print_magic(unsigned char *e_ident)
 }
 
 /**
- * print_class - check the code
+ * display_class - check the code
  * @e_ident: Arrays pointer
  */
-void print_class(unsigned char *e_ident)
+void display_class(unsigned char *e_ident)
 {
 	printf("  Classe:                             ");
 
@@ -88,10 +88,10 @@ void print_class(unsigned char *e_ident)
 }
 
 /**
- * print_data - display data ELF_header.
+ * display_data - display data ELF_header.
  * @e_ident: Arrays pointer
  */
-void print_data(unsigned char *e_ident)
+void display_data(unsigned char *e_ident)
 {
 	printf("  Datas:                              ");
 
@@ -112,10 +112,10 @@ void print_data(unsigned char *e_ident)
 }
 
 /**
- * print_version - display the version ELF_header.
+ * display_version - display the version ELF_header.
  * @e_ident: Array pointer
  */
-void print_version(unsigned char *e_ident)
+void display_version(unsigned char *e_ident)
 {
 	printf("  Versions:                           %d",
 	       e_ident[EI_VERSION]);
@@ -132,10 +132,10 @@ void print_version(unsigned char *e_ident)
 }
 
 /**
- * print_osabi - display result
+ * display_osabi - display result
  * @e_ident: Array pointer
  */
-void print_osabi(unsigned char *e_ident)
+void display_osabi(unsigned char *e_ident)
 {
 	printf("  OS_ABIs:                            ");
 
@@ -177,21 +177,21 @@ void print_osabi(unsigned char *e_ident)
 }
 
 /**
- * print_abi - display result
+ * display_abi - display result
  * @e_ident: Arrays pointer
  */
-void print_abi(unsigned char *e_ident)
+void display_abi(unsigned char *e_ident)
 {
 	printf("  ABI_Versions:                       %d\n",
 	       e_ident[EI_ABIVERSION]);
 }
 
 /**
- * print_type - displaytypes.
+ * display_type - displaytypes.
  * @e_type: ELFtypes.
  * @e_ident: Array pointer
  */
-void print_type(unsigned int e_type, unsigned char *e_ident)
+void display_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
@@ -221,11 +221,11 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 }
 
 /**
- * print_entry - display entry_point
+ * display_entry - display entry_point
  * @e_entry: addresses
  * @e_ident: Array pointer
  */
-void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+void display_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf("  Entry_points_address:               ");
 
@@ -295,16 +295,16 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	check_elf(header->e_ident);
+	validate_elf(header->e_ident);
 	printf("ELF Header:\n");
-	print_magic(header->e_ident);
-	print_class(header->e_ident);
-	print_data(header->e_ident);
-	print_version(header->e_ident);
-	print_osabi(header->e_ident);
-	print_abi(header->e_ident);
-	print_type(header->e_type, header->e_ident);
-	print_entry(header->e_entry, header->e_ident);
+	display_magic(header->e_ident);
+	display_class(header->e_ident);
+	display_data(header->e_ident);
+	display_version(header->e_ident);
+	display_osabi(header->e_ident);
+	display_abi(header->e_ident);
+	display_type(header->e_type, header->e_ident);
+	display_entry(header->e_entry, header->e_ident);
 
 	free(header);
 	close_elf(x);
