@@ -1,33 +1,26 @@
 #include <stdio.h>
-
-int add(int x, int y);
-int sub(int x, int y);
-int mul(int x, int y);
-int div(int x, int y);
-int mod(int x, int y);
-
-int add(int x,int y)
+int add(int a,int b)
 {
-	return x + y;
+	return a + b;
 }
 
-int sub(int x,int y)
+int sub(int a,int b)
 {
-	return x - y;
+	return a - b;
 }
 
-int mul(int x,int y)
+int mul(int a,int b)
 {
-	return x * y;
+	return a * b;
 }
 
 
-int div(int x,int y)
+int div(int a,int b)
 {
-	return x / y;
+	return a / b;
 }
 
-int mod(int x,int y)
+int mod(int a,int b)
 {
-	return x % y;
+	return a % b;
 }
